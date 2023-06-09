@@ -531,7 +531,7 @@ const Main = () => {
   });
 
   return (
-    <main>
+    <main className="flex flex-1 flex-col items-center justify-center">
       <HighchartsReact
         highcharts={Highcharts}
         constructorType={'stockChart'}
