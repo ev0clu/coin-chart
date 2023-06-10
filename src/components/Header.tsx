@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ThemeContext from '../helper/ThemeContext';
+import { MdDarkMode } from 'react-icons/md';
+import { FiSun } from 'react-icons/fi';
 
-const Header = () => {
+interface HeaderProps {
+  handleThemeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const Header = ({ handleThemeClick }: HeaderProps) => {
+  const theme = useContext(ThemeContext);
   return (
-    <header className="flex flex-row justify-between items-center py-5">
-      <h1 className="text-3xl font-bold">BTC/USDT Chart</h1>
-      <div>dark</div>
+    <header className="flex flex-row items-center justify-between px-12 py-5">
+      <h1 className="text-2xl font-bold">BTC/USDT Chart</h1>
+      <button
+        onClick={handleThemeClick}
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-2xl text-themeButtonColor hover:bg-stone-200"
+      >
+        {theme === 'light' ? <MdDarkMode /> : <FiSun />}
+      </button>
     </header>
   );
 };

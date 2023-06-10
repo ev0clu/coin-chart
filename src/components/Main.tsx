@@ -1,20 +1,54 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
+import React, { useEffect, useState, useRef } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HCStock from 'highcharts/modules/stock'; // Import the stock module
 
-const Main = () => {
+interface MainProps {
+  theme: string;
+}
+
+const Main = ({ theme }: MainProps) => {
   HCStock(Highcharts); // Initialize the stock module
+  Highcharts.setOptions({});
+  const chartRef = useRef<HighchartsReact.Props>(null);
+
+  useEffect(() => {
+    if (chartRef.current && chartRef.current.chart) {
+      const chart = chartRef.current.chart;
+
+      chart.update({
+        chart: {
+          backgroundColor: theme === 'light' ? '#FAFAFA' : '#161A1E'
+        }
+      });
+    }
+  }, [theme]);
 
   const [options, setOptions] = useState({
-    title: {
-      text: 'My stock chart'
-    },
     rangeSelector: {
       selected: 1
     },
-    chart: { width: '1000', height: '500' },
+    chart: {
+      type: 'candlestick',
+      width: '1000',
+      height: '500',
+      backgroundColor: theme === 'light' ? '#FAFAFA' : '#161A1E'
+    },
+    plotOptions: {
+      candlestick: {
+        color: 'red',
+        upColor: 'green',
+        lineColor: 'green',
+        borderColor: 'green',
+        fillOpacity: 1,
+        states: {
+          hover: {
+            color: 'red',
+            lineColor: 'red'
+          }
+        }
+      }
+    },
     series: [
       {
         type: 'candlestick',
@@ -536,6 +570,7 @@ const Main = () => {
         highcharts={Highcharts}
         constructorType={'stockChart'}
         options={options}
+        ref={chartRef}
       />
     </main>
   );

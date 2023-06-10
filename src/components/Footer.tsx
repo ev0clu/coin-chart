@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ThemeContext from '../helper/ThemeContext';
 
 const Footer = () => {
+  const theme = useContext(ThemeContext);
+
   return (
     <footer className="text-center">
       <p>
@@ -9,7 +12,9 @@ const Footer = () => {
           href="https://www.protowoerk.com/?lang=en"
           target="_blank"
           rel="noreferrer"
-          className="font-medium text-blue-700"
+          className={`${
+            theme === 'light' ? 'text-blue-500' : 'text-blue-700'
+          } font-medium`}
         >
           Rapid Proto Woerk Kft.
         </a>{' '}
