@@ -11,9 +11,10 @@ import HCStock from 'highcharts/modules/stock'; // Import the stock module
 import '../assets/styles/Chart.css';
 import Loading from '../helper/Loading';
 
+HCStock(Highcharts); // Initialize the stock module
+Highcharts.setOptions({});
+
 const Main = () => {
-  HCStock(Highcharts); // Initialize the stock module
-  Highcharts.setOptions({});
   const chartRef = useRef<HighchartsReact.Props>(null);
   const theme = useContext(ThemeContext);
   const [isLoading, setIsLoading] = useState(true);
@@ -129,7 +130,6 @@ const Main = () => {
           ]
         }));
 
-        console.log(jsonData[1]);
         setIsLoading(false);
       } catch (error) {
         console.log('Error fetching data:', error);
