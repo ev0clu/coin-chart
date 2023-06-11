@@ -9,6 +9,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HCStock from 'highcharts/modules/stock'; // Import the stock module
 import '../assets/styles/Chart.css';
+import Loading from '../helper/Loading';
 
 const Main = () => {
   HCStock(Highcharts); // Initialize the stock module
@@ -127,6 +128,7 @@ const Main = () => {
             }
           ]
         }));
+
         console.log(jsonData[1]);
         setIsLoading(false);
       } catch (error) {
@@ -176,12 +178,16 @@ const Main = () => {
 
   return (
     <main className="my-auto px-12">
-      <HighchartsReact
-        highcharts={Highcharts}
-        constructorType={'stockChart'}
-        options={options}
-        ref={chartRef}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <HighchartsReact
+          highcharts={Highcharts}
+          constructorType={'stockChart'}
+          options={options}
+          ref={chartRef}
+        />
+      )}
     </main>
   );
 };
