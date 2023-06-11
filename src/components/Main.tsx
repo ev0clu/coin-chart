@@ -63,7 +63,10 @@ const Main = () => {
     title: {
       text: 'BTC/USDT',
       align: 'left',
-      style: { color: theme === 'light' ? '#161A1E' : '#FAFAFA' }
+      style: {
+        color: theme === 'light' ? '#161A1E' : '#FAFAFA',
+        fontSize: '20px'
+      }
     },
     rangeSelector: {
       selected: 0,
