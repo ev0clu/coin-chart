@@ -14,7 +14,7 @@ const Header = ({ handleThemeClick }: HeaderProps) => {
       <h1 className="text-2xl font-bold text-orange">Order Book</h1>
       <button
         onClick={handleThemeClick}
-        className="hover:bg-hover flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-2xl text-orange"
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-2xl text-orange hover:bg-hover"
       >
         {theme === 'light' ? <MdDarkMode /> : <FiSun />}
       </button>
