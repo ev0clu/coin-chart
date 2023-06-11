@@ -9,14 +9,14 @@ const Footer = () => {
       <p>
         Copyright ©{' '}
         <a
-          href="https://www.protowoerk.com/?lang=en"
+          href={import.meta.env.VITE_HTTP_URL}
           target="_blank"
           rel="noreferrer"
           className={`${
             theme === 'light' ? 'text-blue' : 'text-blue'
           } font-medium`}
         >
-          Rapid Proto Woerk Kft.
+          {import.meta.env.VITE_AUTHOR}
         </a>{' '}
         2023
       </p>
