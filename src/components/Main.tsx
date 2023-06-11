@@ -1,16 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useContext
+} from 'react';
+import ThemeContext from '../helper/ThemeContext';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import HCStock from 'highcharts/modules/stock'; // Import the stock module
+import '../assets/styles/Chart.css';
 
-interface MainProps {
-  theme: string;
-}
-
-const Main = ({ theme }: MainProps) => {
+const Main = () => {
   HCStock(Highcharts); // Initialize the stock module
   Highcharts.setOptions({});
   const chartRef = useRef<HighchartsReact.Props>(null);
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     if (chartRef.current && chartRef.current.chart) {
@@ -62,7 +66,7 @@ const Main = ({ theme }: MainProps) => {
       style: { color: theme === 'light' ? '#161A1E' : '#FAFAFA' }
     },
     rangeSelector: {
-      selected: 1,
+      selected: 0,
       inputStyle: {
         color: '#0ea5e9'
       },
@@ -81,7 +85,10 @@ const Main = ({ theme }: MainProps) => {
         },
         states: {
           hover: {
-            fill: 'rgb(168, 162, 158,0.2)'
+            fill: 'rgb(252, 213, 53)',
+            style: {
+              color: '#039'
+            }
           },
           select: {
             fill: '#039',
@@ -89,7 +96,6 @@ const Main = ({ theme }: MainProps) => {
               color: 'white'
             }
           }
-          // disabled: { ... }
         }
       }
     },

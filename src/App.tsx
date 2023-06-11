@@ -27,7 +27,7 @@ function App() {
         } flex h-screen flex-col items-stretch`}
       >
         <Header handleThemeClick={handleThemeClick} />
-        <Main theme={theme} />
+        <Main />
         <Footer />
       </div>
     </ThemeContext.Provider>
