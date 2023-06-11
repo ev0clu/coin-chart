@@ -11,10 +11,10 @@ const Header = ({ handleThemeClick }: HeaderProps) => {
   const theme = useContext(ThemeContext);
   return (
     <header className="flex flex-row items-center justify-between px-12 py-5">
-      <h1 className="text-2xl font-bold">BTC/USDT Chart</h1>
+      <h1 className="text-2xl font-bold text-orange">Order Book</h1>
       <button
         onClick={handleThemeClick}
-        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-2xl text-themeButtonColor hover:bg-stone-200"
+        className="hover:bg-hover flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-2xl text-orange"
       >
         {theme === 'light' ? <MdDarkMode /> : <FiSun />}
       </button>

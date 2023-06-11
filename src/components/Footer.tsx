@@ -13,7 +13,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
           className={`${
-            theme === 'light' ? 'text-blue-500' : 'text-blue-700'
+            theme === 'light' ? 'text-blue' : 'text-blue'
           } font-medium`}
         >
           Rapid Proto Woerk Kft.
