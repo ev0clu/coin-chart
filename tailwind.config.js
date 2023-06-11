@@ -4,9 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        themeButtonColor: '#FCD535',
+        orange: '#FCD535',
+        hover: 'rgb(168, 162, 158,0.2)',
         themeLightColor: '#FAFAFA',
-        themeDarkColor: '#161A1E'
+        themeDarkColor: '#161A1E',
+        blue: '#0ea5e9'
       }
     }
   },
