@@ -85,9 +85,9 @@ const Main = () => {
         },
         states: {
           hover: {
-            fill: 'rgb(252, 213, 53)',
+            fill: '#039',
             style: {
-              color: '#039'
+              color: 'white'
             }
           },
           select: {
