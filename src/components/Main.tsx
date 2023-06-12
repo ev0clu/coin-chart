@@ -16,101 +16,108 @@ const Main = () => {
   const [fetchSeries, setFetchSeries] = useState<number[][]>([[]]);
   const [isFetchSeries, setIsFetchSeries] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [options, setOptions] = useState({
-    chart: {
-      type: 'candlestick',
-      height: '500',
-      backgroundColor: theme === 'light' ? '#FAFAFA' : '#161A1E'
-    },
-    title: {
-      text: 'BTC/USDT',
-      align: 'left',
-      style: {
-        color: theme === 'light' ? '#161A1E' : '#FAFAFA',
-        fontSize: '20px'
-      }
-    },
-    rangeSelector: {
-      selected: 0,
-      inputStyle: {
-        color: '#0ea5e9'
+  const [options, setOptions] = useState({});
+
+  useEffect(() => {
+    setOptions({
+      chart: {
+        type: 'candlestick',
+        height: '500',
+        backgroundColor: theme === 'light' ? '#FAFAFA' : '#161A1E'
       },
-      labelStyle: {
-        color: '#a8a29e'
-      },
-      buttonTheme: {
-        // styles for the buttons
-        fill: 'none',
-        stroke: 'none',
-        'stroke-width': 0,
-        r: 8,
+      title: {
+        text: 'BTC/USDT',
+        align: 'left',
         style: {
-          color: '#0ea5e9',
-          fontWeight: 'bold'
+          color: theme === 'light' ? '#161A1E' : '#FAFAFA',
+          fontSize: '20px'
+        }
+      },
+      rangeSelector: {
+        selected: 0,
+        inputStyle: {
+          color: '#0ea5e9'
         },
-        states: {
-          hover: {
-            fill: '#039',
-            style: {
-              color: 'white'
-            }
+        labelStyle: {
+          color: '#a8a29e'
+        },
+        buttonTheme: {
+          // styles for the buttons
+          fill: 'none',
+          stroke: 'none',
+          'stroke-width': 0,
+          r: 8,
+          style: {
+            color: '#0ea5e9',
+            fontWeight: 'bold'
           },
-          select: {
-            fill: '#039',
-            style: {
-              color: 'white'
+          states: {
+            hover: {
+              fill: '#039',
+              style: {
+                color: 'white'
+              }
+            },
+            select: {
+              fill: '#039',
+              style: {
+                color: 'white'
+              }
             }
           }
         }
-      }
-    },
-    xAxis: [
-      {
-        lineColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
-        tickColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
-        labels: {
-          style: { color: theme === 'light' ? '#161A1E' : '#FAFAFA' }
+      },
+      xAxis: [
+        {
+          lineColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
+          tickColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
+          labels: {
+            style: {
+              color: theme === 'light' ? '#161A1E' : '#FAFAFA'
+            }
+          }
         }
-      }
-    ],
-    yAxis: [
-      {
-        lineColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
-        tickColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
-        labels: {
-          style: { color: theme === 'light' ? '#161A1E' : '#FAFAFA' }
-        },
-        gridLineColor: theme === 'light' ? '#e6e6e6' : '#78716c'
-      }
-    ],
-    plotOptions: {
-      candlestick: {
-        color: '#F6465D',
-        upColor: '#0ECB81',
-        lineColor: '#F6465D',
-        upLineColor: '#0ECB81',
-        borderColor: 'black',
-        fillOpacity: 1
-      }
-    },
-    navigator: {
-      series: {
-        color: 'green',
-        lineColor: '#0ea5e9',
-        lineWidth: 1.2,
-        fillColor: 'rgb(14, 165, 233, 0.1)'
-      }
-    },
-    series: [
-      {
-        type: 'candlestick',
-        name: 'Stock Price',
-        data: [[]]
-      }
-    ],
-    accessibility: { enabled: false }
-  });
+      ],
+      yAxis: [
+        {
+          lineColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
+          tickColor: theme === 'light' ? '#161A1E' : '#FAFAFA',
+          labels: {
+            style: {
+              color: theme === 'light' ? '#161A1E' : '#FAFAFA'
+            }
+          },
+          gridLineColor: theme === 'light' ? '#e6e6e6' : '#78716c'
+        }
+      ],
+      plotOptions: {
+        candlestick: {
+          color: '#F6465D',
+          upColor: '#0ECB81',
+          lineColor: '#F6465D',
+          upLineColor: '#0ECB81',
+          borderColor: 'black',
+          fillOpacity: 1
+        }
+      },
+      navigator: {
+        series: {
+          color: 'green',
+          lineColor: '#0ea5e9',
+          lineWidth: 1.2,
+          fillColor: 'rgb(14, 165, 233, 0.1)'
+        }
+      },
+      series: [
+        {
+          type: 'candlestick',
+          name: 'Stock Price',
+          data: [[]]
+        }
+      ],
+      accessibility: { enabled: false }
+    });
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -139,6 +146,7 @@ const Main = () => {
           const response = await fetch(
             'https://demo-live-data.highcharts.com/aapl-ohlc.json'
           );
+          console.log(response);
           //const jsonData = await response.json();
 
           const minValue = 180;
