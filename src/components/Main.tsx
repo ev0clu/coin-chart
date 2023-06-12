@@ -18,7 +18,8 @@ const Main = () => {
   const theme = useContext(ThemeContext);
   const chartRef = useRef<HighchartsReact.Props>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [fetchSeries, setFetchSeries] = useState<number[]>([]);
+  const [fetchSeries, setFetchSeries] = useState<number[][]>([[]]);
+  const [isFetchSeries, setIsFetchSeries] = useState(false);
 
   const [options, setOptions] = useState({
     chart: {
@@ -124,12 +125,57 @@ const Main = () => {
         const jsonData = await response.json();
         setFetchSeries(jsonData);
         setIsLoading(false);
+        setIsFetchSeries(true);
       } catch (error) {
         console.log('Error fetching data:', error);
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      function getRandomValue(min: number, max: number) {
+        return Math.random() * (max - min) + min;
+      }
+      const fetchData = async () => {
+        try {
+          const response = await fetch(
+            'https://demo-live-data.highcharts.com/aapl-ohlc.json'
+          );
+          const jsonData = await response.json();
+
+          const minValue = 180;
+          const maxValue = 200;
+
+          const open = getRandomValue(minValue, maxValue);
+          const high = getRandomValue(open, maxValue);
+          const low = getRandomValue(minValue, open);
+          const close = getRandomValue(low, high);
+
+          setFetchSeries((prevData) => {
+            const time = prevData[prevData.length - 1][0] + 277938000;
+
+            const newData = [
+              prevData[prevData.length - 1][0] + 277938000,
+              open,
+              high,
+              low,
+              close
+            ];
+            return [...prevData, newData];
+          });
+        } catch (error) {
+          console.log('Error fetching data:', error);
+        }
+      };
+      fetchData();
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isFetchSeries]);
 
   useEffect(() => {
     if (chartRef.current && chartRef.current.chart) {
@@ -169,7 +215,7 @@ const Main = () => {
         ]
       });
     }
-  }, [theme, fetchSeries]);
+  }, [theme]);
 
   useEffect(() => {
     if (chartRef.current && chartRef.current.chart) {
