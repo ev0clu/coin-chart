@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 
 function App() {
   const [theme, setTheme] = useState('light');
+  const [isRestoredTheme, setIsRestoredTheme] = useState(false);
 
   useEffect(() => {
     restoreTheme();
@@ -35,6 +36,7 @@ function App() {
     } else {
       data = JSON.parse(themeData);
     }
+    setIsRestoredTheme(true);
     setTheme(data);
     saveTheme(data);
   };
@@ -49,7 +51,7 @@ function App() {
         } flex h-screen w-screen flex-col items-stretch`}
       >
         <Header handleThemeClick={handleThemeClick} />
-        <Main />
+        {isRestoredTheme ? <Main /> : ''}
         <Footer />
       </div>
     </ThemeContext.Provider>
