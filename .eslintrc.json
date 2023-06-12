@@ -23,5 +23,10 @@
       }
     }
   },
-  "rules": { "no-console": "off", "no-unused-vars": "off" }
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
