@@ -15,9 +15,10 @@ HCStock(Highcharts); // Initialize the stock module
 Highcharts.setOptions({});
 
 const Main = () => {
-  const chartRef = useRef<HighchartsReact.Props>(null);
   const theme = useContext(ThemeContext);
+  const chartRef = useRef<HighchartsReact.Props>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [fetchSeries, setFetchSeries] = useState<number[]>([]);
 
   const [options, setOptions] = useState({
     chart: {
@@ -110,7 +111,8 @@ const Main = () => {
         name: 'Stock Price',
         data: [[]]
       }
-    ]
+    ],
+    accessibility: { enabled: false }
   });
 
   useEffect(() => {
@@ -120,16 +122,7 @@ const Main = () => {
           'https://demo-live-data.highcharts.com/aapl-ohlc.json'
         );
         const jsonData = await response.json();
-        setOptions((prevOptions) => ({
-          ...prevOptions,
-          series: [
-            {
-              ...prevOptions.series[0],
-              data: jsonData
-            }
-          ]
-        }));
-
+        setFetchSeries(jsonData);
         setIsLoading(false);
       } catch (error) {
         console.log('Error fetching data:', error);
@@ -147,7 +140,9 @@ const Main = () => {
           backgroundColor: theme === 'light' ? '#FAFAFA' : '#161A1E'
         },
         title: {
-          style: { color: theme === 'light' ? '#161A1E' : '#FAFAFA' }
+          style: {
+            color: theme === 'light' ? '#161A1E' : '#FAFAFA'
+          }
         },
         xAxis: [
           {
@@ -174,7 +169,17 @@ const Main = () => {
         ]
       });
     }
-  }, [theme, options]);
+  }, [theme, fetchSeries]);
+
+  useEffect(() => {
+    if (chartRef.current && chartRef.current.chart) {
+      const chart = chartRef.current.chart;
+
+      chart.update({
+        series: [{ data: fetchSeries }]
+      });
+    }
+  }, [fetchSeries]);
 
   return (
     <main className="my-auto px-12">
