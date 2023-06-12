@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useContext
-} from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
 import ThemeContext from '../helper/ThemeContext';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
@@ -21,6 +16,7 @@ const Main = () => {
   const [fetchSeries, setFetchSeries] = useState<number[][]>([[]]);
   const [isFetchSeries, setIsFetchSeries] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [options, setOptions] = useState({
     chart: {
       type: 'candlestick',
@@ -143,7 +139,7 @@ const Main = () => {
           const response = await fetch(
             'https://demo-live-data.highcharts.com/aapl-ohlc.json'
           );
-          const jsonData = await response.json();
+          //const jsonData = await response.json();
 
           const minValue = 180;
           const maxValue = 200;
@@ -154,8 +150,6 @@ const Main = () => {
           const close = getRandomValue(low, high);
 
           setFetchSeries((prevData) => {
-            const time = prevData[prevData.length - 1][0] + 277938000;
-
             const newData = [
               prevData[prevData.length - 1][0] + 277938000,
               open,

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import ThemeContext from '../helper/ThemeContext';
 
 const Loading = () => {
@@ -7,7 +7,7 @@ const Loading = () => {
     <div
       className={`${
         theme === 'light' ? 'bg-themeLightColor' : 'bg-themeDarkColor'
-      } flex justify-center items-center`}
+      } flex items-center justify-center`}
     >
       <svg
         className="-ml-1 mr-3 h-14 w-14 animate-spin text-orange"
