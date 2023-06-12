@@ -46,7 +46,7 @@ function App() {
           theme === 'light'
             ? 'bg-themeLightColor text-themeDarkColor'
             : 'bg-themeDarkColor text-themeLightColor'
-        } flex h-screen flex-col items-stretch`}
+        } flex h-screen w-screen flex-col items-stretch`}
       >
         <Header handleThemeClick={handleThemeClick} />
         <Main />
