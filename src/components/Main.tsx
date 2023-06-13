@@ -158,6 +158,9 @@ const Main = () => {
           const close = getRandomValue(low, high);
 
           setFetchSeries((prevData) => {
+            const prevSeries = prevData.map((data) => [...data]);
+            prevSeries.shift();
+
             const newData = [
               prevData[prevData.length - 1][0] + 277938000,
               open,
@@ -165,7 +168,8 @@ const Main = () => {
               low,
               close
             ];
-            return [...prevData, newData];
+            prevSeries.push(newData);
+            return prevSeries;
           });
         } catch (error) {
           console.log('Error fetching data:', error);
