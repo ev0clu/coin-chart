@@ -143,11 +143,10 @@ const Main = () => {
       }
       const fetchData = async () => {
         try {
-          const response = await fetch(
+          // simulate new real time data fetching
+          await fetch(
             'https://demo-live-data.highcharts.com/aapl-ohlc.json'
           );
-          console.log(response);
-          //const jsonData = await response.json();
 
           const minValue = 180;
           const maxValue = 200;
