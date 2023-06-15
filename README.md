@@ -11,7 +11,7 @@ A coin chart app has built with Highchart API.
 - Dark/Light theme
 - Custom chart design based on the Highchart API options
 
-### Developement dependencies
+### Dependencies
 
 - [React](https://react.dev/)
 - [React Router DOM](https://www.npmjs.com/package/react-router-dom)
