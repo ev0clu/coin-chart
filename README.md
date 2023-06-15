@@ -2,6 +2,8 @@
 
 A coin chart app has built with Highchart API.
 
+### Demo: [Link](https://ev0clu.github.io/coin-chart/)
+
 ## How run from local repository
 
 1. Clone the repository
