@@ -34,7 +34,7 @@ const Main = () => {
         }
       },
       rangeSelector: {
-        selected: 0,
+        selected: 5,
         inputStyle: {
           color: '#0ea5e9'
         },
