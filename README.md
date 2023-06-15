@@ -2,7 +2,13 @@
 
 A coin chart app has built with Highchart API.
 
-### Demo: [Link](https://ev0clu.github.io/coin-chart/)
+## How run from local repository
+
+1. Clone the repository
+2. Run `npm install` command in your terminal
+3. Create .env file and add a new enviromental variable named VITE_HTTP_URL and VITE_AUTHOR
+4. Run `npm run dev` command in your terminal
+5. Server running at `http://localhost:5173/`
 
 ## Features
 
